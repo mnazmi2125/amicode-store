@@ -1,0 +1,225 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Color Palette (PRD §3.1) ───────────────────────── */
+  --color-bg-base: #0b0d12;
+  --color-bg-surface: #14171f;
+  --color-bg-surface-hover: #1c202b;
+  --color-border-subtle: #242833;
+  --color-accent-primary: #7c5cff;
+  --color-accent-glow: rgba(124, 92, 255, 0.35);
+  --color-accent-cyan: #06b6d4;
+  --color-accent-gold: #ffc24b;
+  --color-text-primary: #f5f6f8;
+  --color-text-secondary: #9aa0ac;
+  --color-success: #4ade80;
+
+  /* ── Border Radius (PRD §3.2) ───────────────────────── */
+  --radius-card: 16px;
+  --radius-button: 10px;
+
+  /* ── Glow Shadow (PRD §3.2) ────────────────────────── */
+  --shadow-glow: 0 0 30px rgba(124, 92, 255, 0.25);
+  --shadow-glow-strong: 0 0 40px rgba(124, 92, 255, 0.45);
+}
+
+@theme inline {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: #111111;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+section[id],
+div[id] {
+  scroll-margin-top: 88px;
+}
+
+::selection {
+  background-color: var(--color-accent-primary);
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+}
+
+.gradient-text {
+  background-image: linear-gradient(
+    115deg,
+    var(--color-accent-primary) 0%,
+    var(--color-accent-cyan) 55%,
+    var(--color-accent-gold) 110%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.gradient-border {
+  background-image: linear-gradient(
+    135deg,
+    rgba(124, 92, 255, 0.8),
+    rgba(6, 182, 212, 0.5),
+    rgba(124, 92, 255, 0.2)
+  );
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.55);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(74, 222, 128, 0);
+  }
+}
+
+/* ── Cyber grid backdrop ─────────────────────────────── */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(124, 92, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(124, 92, 255, 0.07) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 35%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, #000 35%, transparent 100%);
+}
+
+/* ── Floating animation untuk decor cards ────────────── */
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+.animate-float {
+  animation: float-y 5s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-y 6.5s ease-in-out 1.2s infinite;
+}
+
+/* ── Glow pulse untuk card featured ──────────────────── */
+@keyframes glow-breathe {
+  0%,
+  100% {
+    box-shadow: 0 0 24px rgba(124, 92, 255, 0.18);
+  }
+  50% {
+    box-shadow: 0 0 44px rgba(124, 92, 255, 0.42);
+  }
+}
+
+.animate-glow-breathe {
+  animation: glow-breathe 3.5s ease-in-out infinite;
+}
+
+/* ── Gradient shimmer untuk teks highlight ───────────── */
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.gradient-text-animated {
+  background-image: linear-gradient(
+    115deg,
+    var(--color-accent-primary),
+    var(--color-accent-cyan),
+    var(--color-accent-gold),
+    var(--color-accent-primary)
+  );
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradient-shift 6s ease infinite;
+}
+
+/* ── Scroll indicator bounce ─────────────────────────── */
+@keyframes bounce-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+
+.animate-bounce-soft {
+  animation: bounce-soft 2s ease-in-out infinite;
+}
+
+/* ── Flame flicker untuk intro roket ────────────────── */
+@keyframes flame-flicker {
+  0%,
+  100% {
+    transform: scaleX(1) scaleY(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleX(0.7) scaleY(1.14);
+    opacity: 0.85;
+  }
+}
+
+.flame-flicker {
+  transform-box: fill-box;
+  transform-origin: right center;
+  animation: flame-flicker 0.11s ease-in-out infinite;
+}
+
+/* ── Ticker marquee (bar pengumuman atas) ───────────── */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
